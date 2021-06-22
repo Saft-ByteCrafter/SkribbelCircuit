@@ -10,8 +10,6 @@ int LEDBrightness = 1;
 int LEDHelligkeitsgeschwindigkeit = 5;
 bool CountUp = true;
 
-//code to test idk
-
 void setup() {
   pinMode(LED, OUTPUT);
   pinMode(TasterMode, INPUT_PULLUP);
