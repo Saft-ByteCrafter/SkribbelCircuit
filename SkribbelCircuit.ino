@@ -40,9 +40,9 @@ void loop() {
         Serial.print(LEDBrightness);
         Serial.print(" und der Wert: ");
         if(CountUp == true) {
-         Serial.print("steigt!");
+         Serial.println("steigt!");
          }else{
-         Serial.print("sinkt!");
+         Serial.println("sinkt!");
         }
         if(LEDBrightness >= 255  && CountUp == true) {
           CountUp = false;
