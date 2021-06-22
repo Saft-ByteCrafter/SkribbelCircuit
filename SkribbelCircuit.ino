@@ -1,17 +1,17 @@
 int mode = 2;
 int maxmode = 2;
-#define LED 12
+#define LED_ 12
 #define TasterMode 11
 #define Taster 10
 #define Buzzer 9
 int BuzzerTime = 1000;
 int BuzzerTone = 1;
-int LEDBrightness = 1;
-int LEDHelligkeitsgeschwindigkeit = 5;
+int LED_Brightness = 1;
+int LED_Helligkeitsgeschwindigkeit = 5;
 bool CountUp = true;
 
 void setup() {
-  pinMode(LED, OUTPUT);
+  pinMode(LED_, OUTPUT);
   pinMode(TasterMode, INPUT_PULLUP);
   pinMode(Taster, INPUT_PULLUP);
   pinMode(Buzzer, OUTPUT);
@@ -37,24 +37,24 @@ void loop() {
     case 2:
       if(digitalRead(Taster) == LOW){
         Serial.print("Die Helligkeit ist: ");
-        Serial.print(LEDBrightness);
+        Serial.print(LED_Brightness);
         Serial.print(" und der Wert: ");
         if(CountUp == true) {
          Serial.println("steigt!");
          }else{
          Serial.println("sinkt!");
         }
-        if(LEDBrightness >= 255  && CountUp == true) {
+        if(LED_Brightness >= 255  && CountUp == true) {
           CountUp = false;
-        }else if(LEDBrightness <= 0 && CountUp == false){
+        }else if(LED_Brightness <= 0 && CountUp == false){
           CountUp = true;
         }
         if(CountUp == true) {
-          LEDBrightness += LEDHelligkeitsgeschwindigkeit;
+          LED_Brightness += LED_Helligkeitsgeschwindigkeit;
         }else{
-          LEDBrightness -= LEDHelligkeitsgeschwindigkeit;
+          LED_Brightness -= LED_Helligkeitsgeschwindigkeit;
         }
-        analogWrite(LED, LEDBrightness);
+        analogWrite(LED_, LED_Brightness);
         delay(50);
       }
 }
