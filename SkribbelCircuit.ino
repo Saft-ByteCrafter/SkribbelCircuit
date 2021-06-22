@@ -10,6 +10,8 @@ int LEDBrightness = 1;
 int LEDHelligkeitsgeschwindigkeit = 5;
 bool CountUp = true;
 
+//code to test idk
+
 void setup() {
   pinMode(LED, OUTPUT);
   pinMode(TasterMode, INPUT_PULLUP);
@@ -23,7 +25,7 @@ void loop() {
     mode = 0;
   }
   switch(mode){
-    case 1: 
+    case 1:
     if(digitalRead(Taster) == LOW) {
       BuzzerTone = random(100, 4000);
       tone(Buzzer, BuzzerTone);
@@ -33,8 +35,8 @@ void loop() {
       Serial.print(BuzzerTone);
       Serial.println("!");
       delay(2000); }
-    break; 
-    case 2: 
+    break;
+    case 2:
       if(digitalRead(Taster) == LOW){
         Serial.print("Die Helligkeit ist: ");
         Serial.print(LEDBrightness);
