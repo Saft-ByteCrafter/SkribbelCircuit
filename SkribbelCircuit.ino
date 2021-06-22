@@ -58,6 +58,8 @@ void loop() {
         }else{
           LED_Brightness -= LED_Helligkeitsgeschwindigkeit;
         }
+        if(LED_Brightness > 255) LED_Brightness = 255;
+        else if(LED_Brightness < 0) LED_Brightness = 0;
         analogWrite(LED_, LED_Brightness);
         delay(50);
       }
