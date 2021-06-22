@@ -1,6 +1,6 @@
 int mode = 2;
 int maxmode = 2;
-#define LED_ D8
+#define LED_ 8
 #define TasterMode 11
 #define Taster 10
 #define Buzzer 9
@@ -18,6 +18,7 @@ void setup() {
   Serial.begin(9600);
   for(int i = 0; i < 300; i++){
   analogWrite(LED_, i);
+  delay(500);
   }
 }
 
