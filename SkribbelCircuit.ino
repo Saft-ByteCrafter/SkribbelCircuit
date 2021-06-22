@@ -1,72 +1,51 @@
-int mode = 2;
-int maxmode = 2;
-#define LED_ 8
-#define TasterMode 11
-#define Taster 10
-#define Buzzer 9
-int BuzzerTime = 1000;
-int BuzzerTone = 1;
-int LED_Brightness = 1;
-int LED_Helligkeitsgeschwindigkeit = 5;
-bool CountUp = true;
+int task = 1;
 
-void setup() {
-  pinMode(LED_, OUTPUT);
-  pinMode(TasterMode, INPUT_PULLUP);
-  pinMode(Taster, INPUT_PULLUP);
-  pinMode(Buzzer, OUTPUT);
+void setup(){
   Serial.begin(9600);
-  for(int i = 0; i < 300; i++){
-  analogWrite(LED_, i);
+
+  Serial.println("Hello and welcome to Scribble-Circuit!");
   delay(500);
-  }
+  Serial.println("Here you can draw your own electric Circuits on paper!");
+  delay(500);
+  Serial.println("Just draw thick lines with the pen on a paper");
+  Serial.println("and put the right components on it.");
+  delay(500);
+  Serial.println("Lastly, put the cables into the Arduino.");
+  delay(500);
+  Serial.println("Let's start now, shall we?");
+  delay(500);
 }
 
-void loop() {
-  if(mode > maxmode) {
-    mode = 0;
-  }
-  switch(mode){
+void loop(){
+
+  switch (task)) {
     case 1:
-    if(digitalRead(Taster) == LOW) {
-      BuzzerTone = random(100, 4000);
-      tone(Buzzer, BuzzerTone);
-      delay(BuzzerTime);
-      noTone(Buzzer);
-      Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
-      Serial.print(BuzzerTone);
-      Serial.println("!");
-      delay(2000); }
-    break;
-    case 2:
-      DimmLED();
-      break;
-}
-}
+      //port-setup if neccessary
+      while(true){
 
-void DimmLED(){
-  if(digitalRead(Taster) == LOW){
-    Serial.print("Die Helligkeit ist: ");
-    Serial.print(LED_Brightness);
-    Serial.print(" und der Wert: ");
-    if(CountUp == true) {
-     Serial.println("steigt!");
-     }else{
-     Serial.println("sinkt!");
-    }
-    if(LED_Brightness >= 255  && CountUp == true) {
-      CountUp = false;
-    }else if(LED_Brightness <= 0 && CountUp == false){
-      CountUp = true;
-    }
-    if(CountUp == true) {
-      LED_Brightness += LED_Helligkeitsgeschwindigkeit;
-    }else{
-      LED_Brightness -= LED_Helligkeitsgeschwindigkeit;
-    }
-    if(LED_Brightness > 255) LED_Brightness = 255;
-    else if(LED_Brightness < 0) LED_Brightness = 0;
-    analogWrite(LED_, LED_Brightness);
-    delay(50);
+        //put stuff here
+
+//        String message =
+//        if(message.contains("end"))break;
+        delay(500);
+      }
+      Serial.println("By the way, you can jump to any task by just");
+      Serial.println("send the index of the task into the terminal!");
+      delay(500);
+      Serial.println("You can also end the task you are working on right now");
+      Serial.println("by typing end in the terminal.");
+      task++;
+      //^this at the end of this case
+      break;
+    case 2:
+      while(true){
+        //put stuff Here
+        if("win condition")break;
+        //String message =
+        //if(message.contains("end"))break;
+        //else task = Integer.valueOf(message);
+      }
+      task++;
+      break;
   }
 }
