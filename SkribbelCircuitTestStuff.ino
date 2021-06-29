@@ -2,8 +2,19 @@ int mode = 2;
 int maxmode = 2;
 #define LED_ 8
 #define TasterMode 11
-#define Taster 10
+#define Taster_0 10
 #define Buzzer 9
+#define Taster_1 8
+#define Tone_1 100
+#define Taster_2 7
+#define Tone_2 500
+#define Taster_3 6
+#define Tone_3 1000
+#define Taster_4 5
+#define Tone_4 2000
+#define Taster_5 4
+#define Tone_5 3000
+
 int BuzzerTime = 1000;
 int BuzzerTone = 1;
 int LED_Brightness = 1;
@@ -62,6 +73,53 @@ void loop() {
         else if(LED_Brightness < 0) LED_Brightness = 0;
         analogWrite(LED_, LED_Brightness);
         delay(50);
+        break;
+        case 3:
+        if(digitalRead(Taster_1) == LOW) {
+          BuzzerTone = Tone_1;
+          tone(Buzzer, BuzzerTone);
+          delay(BuzzerTime);
+          noTone(Buzzer);
+          Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
+          Serial.print(BuzzerTone);
+          Serial.println("!");
+          delay(2000);
+        }else if(digitalRead(Taster_2) == LOW) {
+            BuzzerTone = Tone_2;
+            tone(Buzzer, BuzzerTone);
+            delay(BuzzerTime);
+            noTone(Buzzer);
+            Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
+            Serial.print(BuzzerTone);
+            Serial.println("!");
+            delay(2000);
+          }else if(digitalRead(Taster_3) == LOW) {
+              BuzzerTone = Tone_3;
+              tone(Buzzer, BuzzerTone);
+              delay(BuzzerTime);
+              noTone(Buzzer);
+              Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
+              Serial.print(BuzzerTone);
+              Serial.println("!");
+              delay(2000);
+            }else if(digitalRead(Taster_4) == LOW) {
+                BuzzerTone = Tone_4;
+                tone(Buzzer, BuzzerTone);
+                delay(BuzzerTime);
+                noTone(Buzzer);
+                Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
+                Serial.print(BuzzerTone);
+                Serial.println("!");
+                delay(2000);
+              }else{
+                  BuzzerTone = Tone_5;
+                  tone(Buzzer, BuzzerTone);
+                  delay(BuzzerTime);
+                  noTone(Buzzer);
+                  Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
+                  Serial.print(BuzzerTone);
+                  Serial.println("!");
+                  delay(2000);
       }
 }
 }

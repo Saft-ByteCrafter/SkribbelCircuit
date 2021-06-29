@@ -1,129 +1,75 @@
-int mode = 2;
-int maxmode = 2;
-#define LED_ 8
-#define TasterMode 11
-#define Taster_0 10
-#define Buzzer 9
-#define Taster_1 8
-#define Tone_1 100
-#define Taster_2 7
-#define Tone_2 500
-#define Taster_3 6
-#define Tone_3 1000
-#define Taster_4 5
-#define Tone_4 2000
-#define Taster_5 4
-#define Tone_5 3000
+int task = 0;
+#define ledPin 12 //TODO we can change that pot though
+#define delay 500
 
-int BuzzerTime = 1000;
-int BuzzerTone = 1;
-int LED_Brightness = 1;
-int LED_Helligkeitsgeschwindigkeit = 5;
-bool CountUp = true;
 
-void setup() {
-  pinMode(LED_, OUTPUT);
-  pinMode(TasterMode, INPUT_PULLUP);
-  pinMode(Taster, INPUT_PULLUP);
-  pinMode(Buzzer, OUTPUT);
+void setup(){
+  pinMode(ledPin, OUTPUT);
+
   Serial.begin(9600);
-  for(int i = 0; i < 300; i++){
-  analogWrite(LED_, i);
-  delay(500);
-  }
+
+  Serial.println("Hello and welcome to Scribble-Circuit!");
+  delay(delay);
+  Serial.println("Here you can draw your own electric Circuits on paper!");
+  delay(delay);
+  Serial.println("Just draw thick lines with the pen on a paper");
+  Serial.println("and put the right components on it.");
+  delay(delay);
+  Serial.println("Lastly, put the cables into the Arduino.");
+  delay(delay);
+  Serial.println("Let's start now, shall we?");
+  delay(delay);
 }
 
-void loop() {
-  if(mode > maxmode) {
-    mode = 0;
-  }
-  switch(mode){
-    case 1:
-    if(digitalRead(Taster_0=) == LOW) {
-      BuzzerTone = random(100, 4000);
-      tone(Buzzer, BuzzerTone);
-      delay(BuzzerTime);
-      noTone(Buzzer);
-      Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
-      Serial.print(BuzzerTone);
-      Serial.println("!");
-      delay(2000); }
-    break;
-    case 2:
-      DimmLED();
+void loop(){
+
+  switch (task)) {
+    case 0:
+      //port-setup if neccessary
+      Serial.println("First,  connect the black cable do a Gnd Port");
+      Serial.println("Then connect the red cable to port " + ledPin);
+      Serial.println("Then connect an led with the - part do the black cable");
+      Serial.println("and then connect the red cable to a resistor, which");
+      Serial.println("you want to connect to the + of the led.");
+      Serial.println();
+      Serial.println("When you are done, type \"done\" into the console.");
+      digitalWrite(ledPin, HIGH);
+      while(true){
+        if(Serial.available() > 0){
+          String message = Serial.read();
+          message = message.tolower();
+          if(message.equalsIgnoreCase("done"))break;
+          delay(500);
+        }
+      }
+      Serial.println("By the way, you can jump to any task by just");
+      Serial.println("sending the index of the task into the terminal!");
+      delay(500);
+      Serial.println("You can also end the task you are working on right now");
+      Serial.println("by typing \"end\" in the terminal.");
+      task++;
+      //^this at the end of this case
       break;
-    case 3:
-    if(digitalRead(Taster_1) == LOW) {
-      BuzzerTone = Tone_1;
-      tone(Buzzer, BuzzerTone);
-      delay(BuzzerTime);
-      noTone(Buzzer);
-      Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
-      Serial.print(BuzzerTone);
-      Serial.println("!");
-      delay(2000);
-    }else if(digitalRead(Taster_2) == LOW) {
-        BuzzerTone = Tone_2;
-        tone(Buzzer, BuzzerTone);
-        delay(BuzzerTime);
-        noTone(Buzzer);
-        Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
-        Serial.print(BuzzerTone);
-        Serial.println("!");
-        delay(2000);
-      }else if(digitalRead(Taster_3) == LOW) {
-          BuzzerTone = Tone_3;
-          tone(Buzzer, BuzzerTone);
-          delay(BuzzerTime);
-          noTone(Buzzer);
-          Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
-          Serial.print(BuzzerTone);
-          Serial.println("!");
-          delay(2000);
-        }else if(digitalRead(Taster_4) == LOW) {
-            BuzzerTone = Tone_4;
-            tone(Buzzer, BuzzerTone);
-            delay(BuzzerTime);
-            noTone(Buzzer);
-            Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
-            Serial.print(BuzzerTone);
-            Serial.println("!");
-            delay(2000);
-          }else{
-              BuzzerTone = Tone_5;
-              tone(Buzzer, BuzzerTone);
-              delay(BuzzerTime);
-              noTone(Buzzer);
-              Serial.print("Der Buzzer hat gebuzzt, mit dem Wert: ");
-              Serial.print(BuzzerTone);
-              Serial.println("!");
-              delay(2000);
-}
-}
-
-void DimmLED(){
-  if(digitalRead(Taster) == LOW){
-    Serial.print("Die Helligkeit ist: ");
-    Serial.print(LED_Brightness);
-    Serial.print(" und der Wert: ");
-    if(CountUp == true) {
-     Serial.println("steigt!");
-     }else{
-     Serial.println("sinkt!");
-    }
-    if(LED_Brightness >= 255  && CountUp == true) {
-      CountUp = false;
-    }else if(LED_Brightness <= 0 && CountUp == false){
-      CountUp = true;
-    }
-    if(CountUp == true) {
-      LED_Brightness += LED_Helligkeitsgeschwindigkeit;
-    }else{
-      LED_Brightness -= LED_Helligkeitsgeschwindigkeit;
-    }
-    if(LED_Brightness > 255) LED_Brightness = 255;
-    else if(LED_Brightness < 0) LED_Brightness = 0;
-    analogWrite(LED_, LED_Brightness);
-    delay(50);
+    case 1:      //port-setup if neccessary
+      Serial.println("First,  connect the black cable do a Gnd Port");
+      Serial.println("Then connect the red cable to port " + ledPin);
+      Serial.println("Then connect an led with the - part do the black cable");
+      Serial.println("and then connect the red cable to a button, which");
+      Serial.println("you want to connect to the resistor, ");
+      Serial.println("which you connect to the + of the led.")
+      digitalWrite(ledPin, HIGH);
+      while(true){
+          String message = Serial.read();
+          message = message.tolower();
+          if(message.equalsIgnoreCase("done"))break;
+          if(message.equalsIgnoreCase("end"))break;
+          if(message.equalsIgnoreCase("0")){
+            task = -1;
+            break;
+          }
+          delay(500);
+      }
+      task++;
+      break;
   }
 }
