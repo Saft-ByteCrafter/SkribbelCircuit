@@ -87,12 +87,12 @@ boolean checkInput(boolean doneYN){
     newTask = false;
     return true;
   }
-  if(message.equalsIgnoreCase("0")){
+  if(message.equalsIgnoreCase("1")){
     newTask = false;
     task = 0;
     return true;
   }
-  if(message.equalsIgnoreCase("1")){
+  if(message.equalsIgnoreCase("2")){
     newTask = false;
     task = 1;
     return true;
