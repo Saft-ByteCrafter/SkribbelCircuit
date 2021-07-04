@@ -1,6 +1,6 @@
 int task = 0;
 bool newTask = true;
-#define ledPin 12 //TODO we can change that port though
+#define ledPin 12 //TODO we can change that pot though
 #define textDelay 500
 //TODO Temp. Sensor Library einbinden und den Code einfügen.
 
@@ -232,39 +232,40 @@ void loop(){
 
 
 boolean checkInput(boolean doneYN){
-  String message = Serial.read();
-  message = message.tolower();
+  String message;
+  message = Serial.read();
+  message.toLowerCase();
   if(doneYN){
-    if(message.equals("done")){
+    if(message.equalsIgnoreCase("done")){
       newTask = true;
       return true;
     }
   }
-  if(message.equals("end")){
+  if(message.equalsIgnoreCase("end")){
     newTask = false;
     return true;
   }
-  if(message.equals("1")){
+  if(message.equalsIgnoreCase("1")){
     newTask = false;
     task = 0;
     return true;
   }
-  if(message.equals("2")){
+  if(message.equalsIgnoreCase("2")){
     newTask = false;
     task = 1;
     return true;
   }
-  if(message.equals("3")){
+  if(message.equalsIgnoreCase("3")){
     newTask = false;
     task = 2;
     return true;
   }
-  if(message.equals("4")){
+  if(message.equalsIgnoreCase("4")){
     newTask = false;
     task = 3;
     return true;
   }
-  if(message.equals("5")){
+  if(message.equalsIgnoreCase("5")){
     newTask = false;
     task = 4;
     return true;
