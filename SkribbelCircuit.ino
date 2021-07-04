@@ -24,12 +24,14 @@ void setup(){
 
 void loop(){
 
-  switch (task)) {
-    case 0:
+  switch (task) {
+    case 0: {
       //port-setup if neccessary
       Serial.println("First,  connect the black cable do a Gnd Port.");
       delay(textDelay);
-      Serial.println("Then connect the red cable to port " + ledPin + ".");
+      String text1 = "Then connect the red cable to port ";
+      String text2 = ".";
+      Serial.println(text1 + ledPin + text2);
       delay(textDelay);
       Serial.println("Then connect an led with the - part to the black cable");
       Serial.println("and then connect the red cable to a resistor, which");
@@ -50,10 +52,13 @@ void loop(){
       if(newTask) task++;
       //^this at the end of this case
       break;
-    case 1:      //port-setup if neccessary
+    }
+    case 1:{      //port-setup if neccessary
       Serial.println("First,  connect the black cable do a Gnd Port.");
       delay(textDelay);
-      Serial.println("Then connect the red cable to port " + ledPin + ".");
+      String text1 = "Then connect the red cable to port ";
+      String text2 = ".";
+      Serial.println(text1 + ledPin + text2);
       delay(textDelay);
       Serial.println("Then connect an led with the - part do the black cable");
       Serial.println("and then connect the red cable to a button, which");
@@ -69,14 +74,16 @@ void loop(){
       }
       if(newTask) task++;
         break;
+    }
   }
 }
 
 
 
 boolean checkInput(boolean doneYN){
-  String message = Serial.read();
-  message = message.tolower();
+  String message;
+  message = Serial.read();
+  message.toLowerCase();
   if(doneYN){
     if(message.equalsIgnoreCase("done")){
       newTask = true;
