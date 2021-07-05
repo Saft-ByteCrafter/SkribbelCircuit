@@ -92,7 +92,7 @@ String getSerialInput(){
 }
 
 bool checkInput(bool doneYN, String message){
-  Serial.println("In der Methode");
+  Serial.println("'" + "Message" + "'");
   /*message.toLowerCase();*/
   int num = message.toInt();
   bool x = message.toInt();
