@@ -110,11 +110,15 @@ bool checkInput(bool doneYN, String message){
   bool x = message.toInt();
   if((doneYN && message == "done")||message == "end"){
     newTask = true;
+    Serial.println("");
+    Serial.println("");
     return true;
   }
   else if(x && num > 0 && num < 3){
     newTask = false;
     task = num - 1;
+    Serial.println("");
+    Serial.println("");
     return true;
   }
 
