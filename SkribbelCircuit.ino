@@ -108,7 +108,7 @@ bool checkInput(bool doneYN, String message){
   message.toLowerCase();
   int num = message.toInt();
   bool x = message.toInt();
-  if(doneYN && message == "done")||message == "end"){
+  if((doneYN && message == "done")||message == "end"){
     newTask = true;
     return true;
   }
