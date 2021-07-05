@@ -92,20 +92,21 @@ String getSerialInput(){
 }
 
 bool checkInput(bool doneYN, String message){
-  message.toLowerCase();
+  /*message.toLowerCase();*/
+  int num = message.toInt();
+  bool x = message.toInt();
   if(doneYN && message == "done"){
     newTask = true;
     return true;
   }
-  if(message == "end"){
+  else if(message == "end"){
     newTask = false;
     return true;
   }
 
-  int num = message.toInt();
-  bool x = message.toInt();
 
-  if(x && num > 0 && num < 3){
+
+  else if(x && num > 0 && num < 3){
     newTask = false;
     task = num - 1;
     return true;
