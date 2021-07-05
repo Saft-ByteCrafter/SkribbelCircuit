@@ -91,10 +91,20 @@ String getSerialInput(){
   return serialData;
 }
 
+String ConvNormal(String Str)
+{
+  String Out = "";
+
+  for(int i = 0; i < Str.length(); i++)
+  {
+    if(Str.charAt(i) >= 32 && Str.charAt(i) <= 126) Out += Str.charAt(i);
+  }
+
+  return Out;
+}
+
 bool checkInput(bool doneYN, String message){
-  String send = "'" + message + "'";
-  Serial.println(send);
-  /*message.toLowerCase();*/
+//  message = ConvNormal(message).toLowerCase();
   int num = message.toInt();
   bool x = message.toInt();
   if(doneYN && message == "done"){
@@ -114,5 +124,6 @@ bool checkInput(bool doneYN, String message){
     return true;
   }
   return false;
+
 
 }
