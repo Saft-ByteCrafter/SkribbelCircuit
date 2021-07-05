@@ -40,8 +40,7 @@ void loop(){
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
       digitalWrite(ledPin, HIGH);
-      while(true){
-        if(checkInput(true))break;
+      while(!checkInput(true)){
         delay(500);
       }
       Serial.println("By the way, you can jump to any task by just");
@@ -68,9 +67,8 @@ void loop(){
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
       digitalWrite(ledPin, HIGH);
-      while(true){
-          if(checkInput(true))break;
-          delay(500);
+      while(!checkInput(true)){
+        delay(500);
       }
       if(newTask) task++;
         break;
@@ -78,11 +76,20 @@ void loop(){
   }
 }
 
+String GetSerialInput(){
+  String SerialData = "";
 
+  if (Serial.available() > 0){
+    while (Serial.available() > 0){
+      char x = Serial.read();
+      SerialData += x;
+      delay(2);
+    }
+  }
+  return SerialData;
+}
 
-boolean checkInput(boolean doneYN){
-  String message;
-  message = Serial.read();
+bool checkInput(bool doneYN, String message){
   message.toLowerCase();
   if(doneYN){
     if(message.equalsIgnoreCase("done")){
