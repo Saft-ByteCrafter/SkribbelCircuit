@@ -41,7 +41,7 @@ void loop(){
       Serial.println("When you are done, type \"done\" into the console.");
       digitalWrite(ledPin, HIGH);
       while(!checkInput(true, getSerialInput())){
-        delay(500);
+        delay(1);
       }
       Serial.println("By the way, you can jump to any task by just");
       Serial.println("sending the index of the task into the terminal!");
@@ -68,7 +68,7 @@ void loop(){
       Serial.println("When you are done, type \"done\" into the console.");
       digitalWrite(ledPin, HIGH);
       while(!checkInput(true, getSerialInput())){
-        delay(500);
+        delay(1);
       }
       if(newTask) task++;
         break;
@@ -77,39 +77,33 @@ void loop(){
 }
 
 String getSerialInput(){
-  String SerialData = "";
+  String serialData = "";
 
   if (Serial.available() > 0){
     while (Serial.available() > 0){
       char x = Serial.read();
-      SerialData += x;
+      serialData += x;
       delay(2);
     }
   }
-  return SerialData;
+  return serialData;
 }
 
 bool checkInput(bool doneYN, String message){
   message.toLowerCase();
-  if(doneYN){
-    if(message.equalsIgnoreCase("done")){
-      newTask = true;
-      return true;
-    }
-  }
-  if(message.equalsIgnoreCase("end")){
-    newTask = false;
+  if((doneYN && message == "done") || message == "end"){
+    newTask = (message == "done");
     return true;
   }
-  if(message.equalsIgnoreCase("1")){
+
+  int num = message.toInt();
+  bool x = message.toInt();
+
+  if(x && num > 0 && num < 3){
     newTask = false;
-    task = 0;
-    return true;
-  }
-  if(message.equalsIgnoreCase("2")){
-    newTask = false;
-    task = 1;
+    task = num - 1;
     return true;
   }
   return false;
+
 }
