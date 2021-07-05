@@ -1,5 +1,6 @@
 int task = 0;
 bool newTask = true;
+String Str = (char)10 + "" + (char)10;
 #define ledPin 12 //TODO we can change that pot though
 #define textDelay 500
 
@@ -39,6 +40,7 @@ void loop(){
       delay(textDelay);
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
+      Serial.println();
       digitalWrite(ledPin, HIGH);
       while(!checkInput(true, getSerialInput())){
         delay(1);
@@ -50,6 +52,7 @@ void loop(){
       Serial.println("by typing \"end\" in the terminal.");
       if(newTask) task++;
       Serial.println();
+      Serial.print(Str);
       //^this at the end of this case
       break;
     }
@@ -67,6 +70,7 @@ void loop(){
       delay(textDelay);
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
+      Serial.print(Str);
       digitalWrite(ledPin, HIGH);
       while(!checkInput(true, getSerialInput())){
         delay(1);
@@ -104,20 +108,17 @@ String ConvNormal(String Str)
 }
 
 bool checkInput(bool doneYN, String message){
-  String Str = (char)10 + "" + (char)10;
   message = ConvNormal(message);
   message.toLowerCase();
   int num = message.toInt();
   bool x = message.toInt();
   if((doneYN && message == "done")||message == "end"){
     newTask = true;
-    Serial.print(Str);
     return true;
   }
   else if(x && num > 0 && num < 3){
     newTask = false;
     task = num - 1;
-    Serial.print(Str);
     return true;
   }
 
