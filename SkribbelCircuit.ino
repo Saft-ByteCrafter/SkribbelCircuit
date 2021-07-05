@@ -104,26 +104,19 @@ String ConvNormal(String Str)
 }
 
 bool checkInput(bool doneYN, String message){
-//  message = ConvNormal(message).toLowerCase();
+  message = ConvNormal(message);
+  message.toLowerCase();
   int num = message.toInt();
   bool x = message.toInt();
-  if(doneYN && message == "done"){
+  if(doneYN && message == "done")||message == "end"){
     newTask = true;
     return true;
   }
-  else if(message == "end"){
-    newTask = false;
-    return true;
-  }
-
-
-
   else if(x && num > 0 && num < 3){
     newTask = false;
     task = num - 1;
     return true;
   }
-  return false;
 
-
+ return false;
 }
