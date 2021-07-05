@@ -104,7 +104,7 @@ String ConvNormal(String Str)
 }
 
 bool checkInput(bool doneYN, String message){
-  String Str = (char)10 + (char)10;
+  String Str = (char)10 + "" + (char)10;
   message = ConvNormal(message);
   message.toLowerCase();
   int num = message.toInt();
@@ -112,13 +112,11 @@ bool checkInput(bool doneYN, String message){
   if((doneYN && message == "done")||message == "end"){
     newTask = true;
     Serial.print(Str);
-    Serial.print(Str);
     return true;
   }
   else if(x && num > 0 && num < 3){
     newTask = false;
     task = num - 1;
-    Serial.print(Str);
     Serial.print(Str);
     return true;
   }
