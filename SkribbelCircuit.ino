@@ -49,6 +49,7 @@ void loop(){
       Serial.println("You can also end the task you are working on right now");
       Serial.println("by typing \"end\" in the terminal.");
       if(newTask) task++;
+      Serial.println();
       //^this at the end of this case
       break;
     }
@@ -71,6 +72,7 @@ void loop(){
         delay(1);
       }
       if(newTask) task++;
+      Serial.println();
         break;
     }
   }
@@ -91,8 +93,12 @@ String getSerialInput(){
 
 bool checkInput(bool doneYN, String message){
   message.toLowerCase();
-  if((doneYN && message == "done") || message == "end"){
-    newTask = (message == "done");
+  if(doneYN && message == "done"){
+    newTask = true;
+    return true;
+  }
+  if(message == "end"){
+    newTask = false;
     return true;
   }
 
