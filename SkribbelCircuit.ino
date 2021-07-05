@@ -115,19 +115,19 @@ void loop(){
    case 3:{
      #define Buzzer 11
      #define Taster_1 10
-     #define Tone_1 33
+     #define Tone_1 131
      #define Taster_2 9
-     #define Tone_2 37
+     #define Tone_2 147
      #define Taster_3 7
-     #define Tone_3 41
+     #define Tone_3 165
      #define Taster_4 6
-     #define Tone_4 44
+     #define Tone_4 175
      #define Taster_5 5
-     #define Tone_5 49
+     #define Tone_5 196
  /*  #define Taster_6 4
-     #define Tone_6 55
+     #define Tone_6 220
      #define Taster_7 3
-     #define Tone_7 62 */
+     #define Tone_7 247 */
      #define BuzzerTime 5
      pinMode(Taster_1,INPUT_PULLUP);
      pinMode(Taster_2,INPUT_PULLUP);
