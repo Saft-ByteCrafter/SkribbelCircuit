@@ -40,7 +40,7 @@ void loop(){
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
       digitalWrite(ledPin, HIGH);
-      while(!checkInput(true)){
+      while(!checkInput(true, getSerialInput())){
         delay(500);
       }
       Serial.println("By the way, you can jump to any task by just");
@@ -67,7 +67,7 @@ void loop(){
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
       digitalWrite(ledPin, HIGH);
-      while(!checkInput(true)){
+      while(!checkInput(true, getSerialInput())){
         delay(500);
       }
       if(newTask) task++;
@@ -76,7 +76,7 @@ void loop(){
   }
 }
 
-String GetSerialInput(){
+String getSerialInput(){
   String SerialData = "";
 
   if (Serial.available() > 0){
