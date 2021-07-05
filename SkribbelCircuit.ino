@@ -21,6 +21,8 @@ void setup(){
   delay(textDelay);
   Serial.println("Let's start now, shall we?");
   delay(textDelay);
+  Serial.println();
+  Serial.println();
 }
 
 void loop(){
@@ -52,7 +54,7 @@ void loop(){
       Serial.println("by typing \"end\" in the terminal.");
       if(newTask) task++;
       Serial.println();
-      Serial.print(Str);
+      Serial.println();
       //^this at the end of this case
       break;
     }
@@ -70,7 +72,8 @@ void loop(){
       delay(textDelay);
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
-      Serial.print(Str);
+      Serial.println();
+      Serial.println();
       digitalWrite(ledPin, HIGH);
       while(!checkInput(true, getSerialInput())){
         delay(1);
