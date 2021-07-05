@@ -33,9 +33,9 @@ void loop(){
       String text2 = ".";
       Serial.println(text1 + ledPin + text2);
       delay(textDelay);
-      Serial.println("Then connect an led with the - part to the black cable");
+      Serial.println("Then connect an led with the - (short leg) part to the black cable");
       Serial.println("and then connect the red cable to a resistor, which");
-      Serial.println("you want to connect to the + of the led.");
+      Serial.println("you want to connect to the + (long leg) of the led.");
       delay(textDelay);
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
