@@ -36,7 +36,7 @@ void loop(){
       String text2 = ".";
       Serial.println(text1 + ledPin + text2);
       delay(textDelay);
-      Serial.println("Then connect an both cables to two different snails and")
+      Serial.println("Then connect an both cables to two different snails and");
       Serial.println("connect a led with the - (short leg) part to the black cable snail");
       Serial.println("and then connect the red cable snail to a resistor, which");
       Serial.println("you want to connect to the + (long leg) of the led.");
@@ -67,7 +67,7 @@ void loop(){
       Serial.println(text1 + ledPin + text2);
       delay(textDelay);
       Serial.println("Then you connect both cables to two snails and");
-      Serial.println("connect an led with the - part to the black cable sanil");
+      Serial.println("connect an led with the - part to the black cable snail");
       Serial.println("and then connect the red cable snail to a button, which");
       Serial.println("you want to connect to the resistor, ");
       Serial.println("which you connect to the + of the led.");
@@ -88,8 +88,8 @@ void loop(){
      int Light = 0;
      Serial.println("First,  connect the black cable do a Gnd Port.");
      delay(textDelay);
-     Serial.println("Then connect the red cable to port ");
-     Serial.println(ledPin);
+     Serial.print("Then connect the red cable to port ");
+     Serial.print(ledPin);
      Serial.println(".");
      delay(textDelay);
      Serial.println("After that, you connect both cables to the snale");
@@ -106,9 +106,8 @@ void loop(){
      Serial.println();
      Serial.println("When you are done, type \"done\" into the console.");
      digitalWrite(ledPin, HIGH);
-     while(true){
-         if(checkInput(true))break;
-         delay(500);
+     while(!checkInput(true, getSerialInput())){
+       delay(1);
      }
      if(newTask) task++;
        break;
@@ -116,20 +115,27 @@ void loop(){
    case 3:{
      #define Buzzer 11
      #define Taster_1 10
-     #define Tone_1 "C"
+     #define Tone_1 33
      #define Taster_2 9
-     #define Tone_2 "D"
+     #define Tone_2 37
      #define Taster_3 7
-     #define Tone_3 "E"
+     #define Tone_3 41
      #define Taster_4 6
-     #define Tone_4 "F"
+     #define Tone_4 44
      #define Taster_5 5
-     #define Tone_5 "G"
+     #define Tone_5 49
  /*  #define Taster_6 4
-     #define Tone_6 A
+     #define Tone_6 55
      #define Taster_7 3
-     #define Tone_7 H */
+     #define Tone_7 62 */
      #define BuzzerTime 5
+     pinMode(Taster_1,INPUT_PULLUP);
+     pinMode(Taster_2,INPUT_PULLUP);
+     pinMode(Taster_3,INPUT_PULLUP);
+     pinMode(Taster_4,INPUT_PULLUP);
+/*   pinMode(Taster_5,INPUT_PULLUP);
+     pinMode(Taster_6,INPUT_PULLUP);
+     pinMode(Taster_7,INPUT_PULLUP); */
      Serial.println("First,  connect the black cable do a Gnd Port.");
      delay(textDelay);
      Serial.println("Then connect the red cable to port 5V.");
@@ -187,10 +193,8 @@ void loop(){
        delay(BuzzerTime);
      }
 
-     while(true){
-       delay(500);
-         if(Serial.available()) continue;
-         if(checkInput(true))break;
+     while(!checkInput(true, getSerialInput())){
+       delay(1);
      }
      if(newTask) task++;
        break;
