@@ -92,7 +92,7 @@ void loop(){
      Serial.print(ledPin);
      Serial.println(".");
      delay(textDelay);
-     Serial.println("After that, you connect both cables to the snale");
+     Serial.println("After that, you connect both cables to the snails");
      Serial.println("and then draw a line from the snale with the black cable");
      Serial.println("to the potentiometer, which you connect than");
      Serial.println("to the - part of the led.");
@@ -101,8 +101,8 @@ void loop(){
      Serial.println("from the red cable snail to the + of the led.");
      delay(textDelay);
      Serial.println("When you are finished with the construction,");
-     Serial.println("you can try to spin the potentiometer and watch");
-     Serial.println("what happened.");
+     Serial.println("you can try to spin the potentiometer and see");
+     Serial.println("what happens.");
      Serial.println();
      Serial.println("When you are done, type \"done\" into the console.");
      digitalWrite(ledPin, HIGH);
@@ -162,11 +162,12 @@ void loop(){
      Serial.println("and so on.");
      delay(textDelay);
      Serial.println("When you are finished with the construction,");
-     Serial.println("you can try to press the buttons and watch");
-     Serial.println("what happened.");
+     Serial.println("you can try to press the buttons and see");
+     Serial.println("what happens.");
      delay(textDelay);
      Serial.println();
      Serial.println("When you are done, type \"done\" into the console.");
+     Serial.println();
      if(digitalRead(Taster_1) == HIGH) {
        tone(Buzzer, Tone_1);
        delay(BuzzerTime);
@@ -215,20 +216,18 @@ String getSerialInput(){
   return serialData;
 }
 
-String ConvNormal(String Str)
-{
-  String Out = "";
+String convNormal(String string){
+  String out = "";
 
-  for(int i = 0; i < Str.length(); i++)
-  {
-    if(Str.charAt(i) >= 32 && Str.charAt(i) <= 126) Out += Str.charAt(i);
+  for(int i = 0; i < string.length(); i++){
+    if(string.charAt(i) >= 32 && string.charAt(i) <= 126) out += string.charAt(i);
   }
 
-  return Out;
+  return out;
 }
 
 bool checkInput(bool doneYN, String message){
-  message = ConvNormal(message);
+  message = convNormal(message);
   message.toLowerCase();
   int num = message.toInt();
   bool x = message.toInt();
