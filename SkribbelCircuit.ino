@@ -1,8 +1,8 @@
 int task = 0;
-bool newTask = true;
-String Str = (char)10 + "" + (char)10;
-#define ledPin 12 //TODO we can change that pot though
-#define textDelay 500
+bool newTask = true; //says if there is supposed to be a new task given or if the task should be repeated
+String strink = (char)10 + "" + (char)10; //bugfix
+#define ledPin 12
+#define textDelay 500 //delay zwischen den texten
 
 
 void setup(){
@@ -32,20 +32,17 @@ void loop(){
       //port-setup if neccessary
       Serial.println("First,  connect the black cable do a Gnd Port.");
       delay(textDelay);
-      String text1 = "Then connect the red cable to port ";
-      String text2 = ".";
-      Serial.println(text1 + ledPin + text2);
+      Serial.println("Then connect the red cable to port 12.");
       delay(textDelay);
       Serial.println("Then connect an both cables to two different snails and");
       Serial.println("connect a led with the - (short leg) part to the black cable snail");
-      Serial.println("and then connect the red cable snail to a resistor, which");
+      Serial.println("and then the red cable snail to a resistor, which");
       Serial.println("you want to connect to the + (long leg) of the led.");
       delay(textDelay);
       Serial.println();
       Serial.println("When you are done, type \"done\" into the console.");
-      Serial.println();
       digitalWrite(ledPin, HIGH);
-      while(!checkInput(true, getSerialInput())){
+      while(!checkInput(true, getSerialInput())){ //method, which checks the terminal-input
         delay(1);
       }
       Serial.println("By the way, you can jump to any task by just");
@@ -53,27 +50,16 @@ void loop(){
       delay(textDelay);
       Serial.println("You can also end the task you are working on right now");
       Serial.println("by typing \"end\" in the terminal.");
-      if(newTask) task++;
+      if(newTask) task++; //to the next task (or not depends on newTask)
       Serial.println();
       Serial.println();
-      //^this at the end of this case
       break;
     }
-    case 1:{      //port-setup if neccessary
-      Serial.println("First,  connect the black cable do a Gnd Port.");
+    case 1:{
+      Serial.println("You basically need the setup from before again, ");
+      Serial.println("just add a button between the resistor and the black cable snail.");
       delay(textDelay);
-      String text1 = "Then connect the red cable to port ";
-      String text2 = ".";
-      Serial.println(text1 + ledPin + text2);
-      delay(textDelay);
-      Serial.println("Then you connect both cables to two snails and");
-      Serial.println("connect an led with the - part to the black cable snail");
-      Serial.println("and then connect the red cable snail to a button, which");
-      Serial.println("you want to connect to the resistor, ");
-      Serial.println("which you connect to the + of the led.");
-      delay(textDelay);
-      Serial.println();
-      Serial.println("When you are done, type \"done\" into the console.");
+//      Serial.println("When you are done, type \"done\" into the console.");
       Serial.println();
       Serial.println();
       digitalWrite(ledPin, HIGH);
@@ -86,19 +72,9 @@ void loop(){
     }
     case 2:{
      int Light = 0;
-     Serial.println("First,  connect the black cable do a Gnd Port.");
+     Serial.println("Once again, you'll need nearly the same setup:");
      delay(textDelay);
-     Serial.print("Then connect the red cable to port ");
-     Serial.print(ledPin);
-     Serial.println(".");
-     delay(textDelay);
-     Serial.println("After that, you connect both cables to the snails");
-     Serial.println("and then draw a line from the snale with the black cable");
-     Serial.println("to the potentiometer, which you connect than");
-     Serial.println("to the - part of the led.");
-     delay(textDelay);
-     Serial.println("When you have done this, you draw another line");
-     Serial.println("from the red cable snail to the + of the led.");
+     Serial.print("Just replace the resistor and the button with a potentiometer.");
      delay(textDelay);
      Serial.println("When you are finished with the construction,");
      Serial.println("you can try to spin the potentiometer and see");
@@ -216,7 +192,7 @@ String getSerialInput(){
   return serialData;
 }
 
-String convNormal(String string){
+String convNormal(String string){//converts the input to a normal string (there usually is the line feed)
   String out = "";
 
   for(int i = 0; i < string.length(); i++){
@@ -228,14 +204,19 @@ String convNormal(String string){
 
 bool checkInput(bool doneYN, String message){
   message = convNormal(message);
-  message.toLowerCase();
-  int num = message.toInt();
+  message.toLowerCase();//if some1 types DONE or smth
+  int num = message.toInt();//if it is a number for num-check
   bool x = message.toInt();
-  if((doneYN && message == "done")||message == "end"){
-    newTask = true;
+  if((doneYN && message == "done")||message == "end"){ //looks which message has been sent
+    if(message == "done"){
+      newTask = true; //make a new task
+    }
+    else{
+      newTask = false;
+    }
     return true;
   }
-  else if(x && num > 0 && num < 5){
+  else if(x && num > 0 && num < 5){ //looks which number has been sent and changes the task to the right index
     newTask = false;
     task = num - 1;
     return true;
